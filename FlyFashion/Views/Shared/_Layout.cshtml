@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/twitter-bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" asp-action="Index">Thrift the Fit</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" asp-action="Marketplace">Marketplace</a>
+                    <a class="nav-item nav-link" asp-action="PostItem">Post Item</a>
+
+                </div>
+            </div>
+        </nav>
+        @RenderBody()
+    </div>
+</body>
+</html>

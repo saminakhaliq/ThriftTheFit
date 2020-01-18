@@ -1,6 +1,7 @@
 ﻿@model List<FlyFashion.Models.Item>
 @{
     Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -10,14 +11,15 @@
     <meta name="viewport" content="width=device-width" />
     <title>Marketplace</title>
     <link rel="stylesheet" href="~/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/marketplace.css" />
 </head>
 <body>
 
     <div class="container-fluid">
 
-
-        <h1 class="display-4 text-center font-weight-bolder">Marketplace</h1>
-
+        <div>
+            <h1 class="text-center m-lg-5 text-primary">Marketplace</h1>
+        </div>
 
         <div class="row justify-content-center">
 
@@ -25,12 +27,16 @@
             {
 
                 <div class="card text-left" style="width: 20rem; margin: 30px">
-                    
+                    <img class="card-img-top" src="@item.Image" alt="image unavailable">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">@item.Title</h5>
-                        
-                        <p class="card-text">@item.Description</p>
-                      
+                        <p class="card-text text-body">Type: @item.Type</p>
+                        <p class="card-text">Price: @item.Price</p>
+                        <p class="card-text">Season: @item.Season</p>
+                        <p class="card-text">Colour: @item.Colour</p>
+                        <p class="card-text">Condition: @item.Condition</p>
+                        <p class="card-text">Include contact and notes: @item.Description</p>
+
                     </div>
                 </div>
             }

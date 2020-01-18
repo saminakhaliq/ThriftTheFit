@@ -1,6 +1,7 @@
 ﻿@model FlyFashion.Models.Item
 @{
     ViewData["Title"] = "Post Item";
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -10,13 +11,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/twitter-bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/postitem.css" />
 </head>
 <body>
 
     <div class="container-fluid  my-5">
-        <div class="display-4 my-2 text-center">Post Item</div>
+        <div class="display-4 my-2 text-center text-primary">Send us a thrift!</div>
+        
         <div class="row container">
             <div class="col-md-6 align-self-center ">
+
+                <img src="~/images/undraw_wishlist_jk8a.svg" class="centered" />
 
                 <form class="p-a-1" enctype="multipart/form-data" asp-action="PostItem" method="post">
                     <div asp-validation-summary="All" id="errors"></div>
@@ -27,14 +32,68 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Description">Description:</label>
+                        <label>Select the type:</label>
+                        <select class="form-control" asp-for="Type">
+                            <option selected="selected" value="shoes">Shoes</option>
+                            <option selected="selected" value="jacket">Jacket</option>
+                            <option selected="selected" value="tshirt">T-shirt</option>
+                            <option selected="selected" value="jeans">Pants</option>
+                            <option selected="selected" value="sweaters">Pants</option>
+                            <option selected="selected" value="">Choose an option</option>
+
+                        </select>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label asp-for="Price">Price:</label>
+                        <input class="form-control" asp-for="Price" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Colour">Colour:</label>
+                        <input class="form-control" asp-for="Colour" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select the season:</label>
+                        <select class="form-control" asp-for="Season">
+                            <option selected="selected" value="winter">Winter</option>
+                            <option selected="selected" value="spring">Spring</option>
+                            <option selected="selected" value="summer">Summer</option>
+                            <option selected="selected" value="fall">Fall</option>
+                            <option selected="selected" value="all">All</option>
+                            <option selected="selected" value="">Choose an option</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select a condition:</label>
+                        <select class="form-control" asp-for="Condition">
+                            <option selected="selected" value="new">Good</option>
+                            <option selected="selected" value="used">Used</option>
+                            <option selected="selected" value="good">Good</option>
+                            <option selected="selected" value="">Choose an option</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Image">Link to image:</label>
+                        <input class="form-control" asp-for="Image" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description">Include contact and notes:</label>
                         <input class="form-control" asp-for="Description" />
                     </div>
+
+
 
                     <div class="col-md-2">
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit" id="btnSignUp">
-                                Post Item
+                                Post
                             </button>
                         </div>
                     </div>

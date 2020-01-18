@@ -1,0 +1,31 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
+
+
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.container img {
+    max-width: 50%;
+    height: 50%;
+}
+
+
+
+span {
+    display: inline-block;
+}
+
+img {
+    width: 50%;
+}

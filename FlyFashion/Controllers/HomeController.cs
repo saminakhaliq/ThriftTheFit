@@ -33,20 +33,23 @@ namespace FlyFashion.Controllers
             if (ModelState.IsValid)
             {
 
-                Item item = new Item(model.Title, model.Description);
+                Item item = new Item(model.Type, model.Colour, model.Season, model.Description, model.Price ?? 0, model.Title, model.Image, model.Condition);
                 var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
                 var result = await firebaseClient
                   .Child("Items")
                   .PostAsync(item);
 
-                //Retrieve data from Firebase
-                var dbItems = await firebaseClient
-                  .Child("Items")
-                  .OnceAsync<Item>();
-
-
+                return RedirectToAction("Confirmation");
 
             }
+            return View();
+        }
+
+        // ---------- Confirm post has been added to marketplace ----------
+
+        [HttpGet]
+        public IActionResult Confirmation()
+        {
             return View();
         }
 
@@ -66,6 +69,9 @@ namespace FlyFashion.Controllers
             
         }
 
+        // ---------- Display market place ----------
+
+
         public async Task<IActionResult> Marketplace()
         {
 
@@ -82,7 +88,9 @@ namespace FlyFashion.Controllers
 
             foreach (var item in dbItems)
             {
-                var newItem = new Item(item.Object.Title, item.Object.Description);
+               
+                var newItem = new Item(item.Object.Type, item.Object.Colour, item.Object.Season,
+                    item.Object.Description, item.Object.Price ?? 0, item.Object.Title, item.Object.Image, item.Object.Condition);
                 itemsList.Add(newItem);
             }
 
@@ -91,45 +99,52 @@ namespace FlyFashion.Controllers
 
         }
 
+        // ---------- Raincheck Feature----------
 
+        [HttpGet]
+        public IActionResult Raincheck()
+        {
+            return View();
+        }
 
 
 
         // ---------- TUTORIALS OVER HERE / TESTING ----------
 
-        public async Task<ActionResult> About()
+        /*
+    public async Task<ActionResult> About()
+    {
+        //Simulate test user data and login timestamp
+        var userId = "12345";
+        var currentLoginTime = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
+
+        //Save non identifying data to Firebase
+        var currentUserLogin = new Item() { TimestampUtc = currentLoginTime };
+        var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
+        var result = await firebaseClient
+          .Child("Users/" + userId + "/Logins")
+          .PostAsync(currentUserLogin);
+
+        //Retrieve data from Firebase
+        var dbItems = await firebaseClient
+          .Child("Users")
+          .Child(userId)
+          .Child("Logins")
+          .OnceAsync<Item>();
+
+        var timestampList = new List<DateTime>();
+
+        //Convert JSON data to original datatype
+        foreach (var item in dbItems)
         {
-            //Simulate test user data and login timestamp
-            var userId = "12345";
-            var currentLoginTime = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
-
-            //Save non identifying data to Firebase
-            var currentUserLogin = new Item() { TimestampUtc = currentLoginTime };
-            var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
-            var result = await firebaseClient
-              .Child("Users/" + userId + "/Logins")
-              .PostAsync(currentUserLogin);
-
-            //Retrieve data from Firebase
-            var dbItems = await firebaseClient
-              .Child("Users")
-              .Child(userId)
-              .Child("Logins")
-              .OnceAsync<Item>();
-
-            var timestampList = new List<DateTime>();
-
-            //Convert JSON data to original datatype
-            foreach (var item in dbItems)
-            {
-                timestampList.Add(Convert.ToDateTime(item.Object.TimestampUtc).ToLocalTime());
-            }
-
-            //Pass data to the view
-            ViewBag.CurrentUser = userId;
-            ViewBag.Logins = timestampList.OrderByDescending(x => x);
-            return View();
+            timestampList.Add(Convert.ToDateTime(item.Object.TimestampUtc).ToLocalTime());
         }
+
+        //Pass data to the view
+        ViewBag.CurrentUser = userId;
+        ViewBag.Logins = timestampList.OrderByDescending(x => x);
+        return View();
+    }*/
 
     }
 }

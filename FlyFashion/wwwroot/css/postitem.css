@@ -1,0 +1,22 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive;
+}
+
+#errors {
+    color: red;
+}
+
+.centered {
+  
+    position: fixed;
+    top: 50%;
+    left: 75%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+}
+
+
