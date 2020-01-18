@@ -1,0 +1,58 @@
+﻿@model FlyFashion.Models.Item
+@{
+    ViewData["Title"] = "Post Item";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/twitter-bootstrap/css/bootstrap.css" />
+</head>
+<body>
+
+    <div class="container-fluid  my-5">
+        <div class="display-4 my-2 text-center">Post Item</div>
+        <div class="row container">
+            <div class="col-md-6 align-self-center ">
+
+                <form class="p-a-1" enctype="multipart/form-data" asp-action="PostItem" method="post">
+                    <div asp-validation-summary="All" id="errors"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Title">Title:</label>
+                        <input class="form-control" asp-for="Title" />
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description">Description:</label>
+                        <input class="form-control" asp-for="Description" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="text-center">
+                            <button class="btn btn-primary" type="submit" id="btnSignUp">
+                                Post Item
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>
+
