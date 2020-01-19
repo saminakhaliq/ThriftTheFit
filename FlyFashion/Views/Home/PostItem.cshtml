@@ -34,13 +34,26 @@
                     <div class="form-group">
                         <label>Select the type:</label>
                         <select class="form-control" asp-for="Type">
-                            <option selected="selected" value="shoes">Shoes</option>
-                            <option selected="selected" value="jacket">Jacket</option>
-                            <option selected="selected" value="tshirt">T-shirt</option>
-                            <option selected="selected" value="jeans">Pants</option>
-                            <option selected="selected" value="sweaters">Pants</option>
+                            <option selected="selected" value="Tops">Tops</option>
+                            <option selected="selected" value="Bottoms">Bottoms</option>
+                            <option selected="selected" value="Shoes">Shoes</option>
+                            <option selected="selected" value="Accessory">Accessory</option>
+                            <option selected="selected" value="Outerwear">Outerwear</option>
                             <option selected="selected" value="">Choose an option</option>
 
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select size for clothing item or 'N/A' if non-applicable:</label>
+                        <select class="form-control" asp-for="Size">
+                            <option selected="selected" value="XS">Extra Small</option>
+                            <option selected="selected" value="S">Small</option>
+                            <option selected="selected" value="M">Medium</option>
+                            <option selected="selected" value="L">Large</option>
+                            <option selected="selected" value="XL">Extra Large</option>
+                            <option selected="selected" value="NA">N/A</option>
+                            <option selected="selected" value="">Choose an option</option>
                         </select>
                     </div>
 
@@ -59,11 +72,11 @@
                     <div class="form-group">
                         <label>Select the season:</label>
                         <select class="form-control" asp-for="Season">
-                            <option selected="selected" value="winter">Winter</option>
-                            <option selected="selected" value="spring">Spring</option>
-                            <option selected="selected" value="summer">Summer</option>
-                            <option selected="selected" value="fall">Fall</option>
-                            <option selected="selected" value="all">All</option>
+                            <option selected="selected" value="Winter">Winter</option>
+                            <option selected="selected" value="Spring">Spring</option>
+                            <option selected="selected" value="Summer">Summer</option>
+                            <option selected="selected" value="Fall">Fall</option>
+                            <option selected="selected" value="All">All</option>
                             <option selected="selected" value="">Choose an option</option>
                         </select>
                     </div>
@@ -71,9 +84,8 @@
                     <div class="form-group">
                         <label>Select a condition:</label>
                         <select class="form-control" asp-for="Condition">
-                            <option selected="selected" value="new">Good</option>
-                            <option selected="selected" value="used">Used</option>
-                            <option selected="selected" value="good">Good</option>
+                            <option selected="selected" value="New">New</option>
+                            <option selected="selected" value="Used">Used</option>
                             <option selected="selected" value="">Choose an option</option>
                         </select>
                     </div>
@@ -84,7 +96,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Description">Include contact and notes:</label>
+                        <label asp-for="Description">Contact/Notes:</label>
                         <input class="form-control" asp-for="Description" />
                     </div>
 

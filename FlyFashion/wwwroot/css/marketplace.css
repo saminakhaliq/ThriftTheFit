@@ -1,6 +1,6 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
 
-h1, nav{
+h1, nav, #title{
     font-family: 'Fredoka One', cursive;
 }
 

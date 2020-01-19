@@ -5,6 +5,7 @@
 
 body {
     font-family: 'Fredoka One', cursive;
+    overflow-y: scroll;
 }
 
 .centered {

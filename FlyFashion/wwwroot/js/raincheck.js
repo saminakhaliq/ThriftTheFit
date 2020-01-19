@@ -28,8 +28,8 @@ function weatherCallback(weatherData) {
 }
 
 function setMessage(temperature, description, details) {
-    $("#temperature").html("<h1>" + temperature + "</h1>");
-    $("#weather-text").html("<h2>" + details + "</h2>");
+    $("#weather-text").append("<h1>" + temperature + "° C</h1>");
+    $("#weather-text").append("<h2>" + details + "</h2>");
     var cold = false;
     var mild = false;
     var hot = false;
@@ -42,27 +42,27 @@ function setMessage(temperature, description, details) {
     }
 
     if (cold && description == "Rain") {
-        $("#welcome").html("It's cold and rainy today, wear a jacket and some boots.");
+        $("#weather-text").append("<p>It's cold and rainy today, wear a jacket and some boots.</p>");
     } else if (cold && description == "Clear") {
-        $("#welcome").html("It's cold but sunny today, wear a jacket at least :) ");
+        $("#weather-text").append("<p>It's cold but sunny today, wear a jacket at least :)</p>");
     } else if (cold && description == "Clouds") {
-        $("#welcome").html("It's cold and gloomy today, wear a jacket.");
+        $("#weather-text").append("<p>It's cold and gloomy today, wear a jacket.</p>");
     } else if (mild && description == "Rain") {
-        $("#welcome").html("It's mild and rainy today, wear a raincoat.");
+        $("#weather-text").append("<p>It's mild and rainy today, wear a raincoat.</p>");
     } else if (mild && description == "Clear") {
-        $("#welcome").html("It's mild and sunny, Throw on a sweater!");
+        $("#weather-text").append("<p>It's mild and sunny, Throw on a sweater!</p>");
     } else if (mild && description == "Clouds") {
-        $("#welcome").html("It's mild and cloudy, sweater weather!");
+        $("#weather-text").append("<p>It's mild and cloudy, sweater weather!</p>");
     } else if (hot && description == "Rain") {
-        $("#welcome").html("It's warm but rainy today, wear a raincoat.");
+        $("#weather-text").append("<p>It's warm but rainy today, wear a raincoat.</p>");
     } else if (hot && description == "Clear") {
-        $("#welcome").html("Hot and sunny! Throw on some shorts.");
+        $("#weather-text").append("<p>Hot and sunny! Throw on some shorts</p>");
     } else if (hot && description == "Clouds") {
-        $("#welcome").html("It's warm but cloudy today, consider a longsleeve");
+        $("#welcome").append("It's warm but cloudy today, consider a longsleeve");
     } else if (hot && description == "Rain") {
-        $("#welcome").html("It's warm, but it's raining. Wear a light coat");
+        $("#welcome").append("It's warm, but it's raining. Wear a light coat");
     } else {
-        $("#welcome").html("It's snowy! Bundle up!");
+        $("#weather-text").append("It's snowy! Bundle up!");
     }
 
 

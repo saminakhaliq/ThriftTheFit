@@ -11,6 +11,9 @@ namespace FlyFashion.Models
         [Required(ErrorMessage = "Please enter the type of item you want to sell.")]
         public string Type { get; set; }
 
+        [Required(ErrorMessage = "Please enter the size of your item.")]
+        public string Size { get; set; }
+
         [Required(ErrorMessage = "Please enter the colour of item.")]
         public string Colour { get; set; }
 
@@ -34,7 +37,7 @@ namespace FlyFashion.Models
 
         
         
-        public Item(string type, string colour, string season, string description, double price, string title, string image, string condition)
+        public Item(string type, string colour, string season, string description, double price, string title, string image, string condition, string size)
         {
             Type = type;
             Colour = colour;
@@ -44,6 +47,7 @@ namespace FlyFashion.Models
             Title = title;
             Image = image;
             Condition = condition;
+            Size = size;
 
         }
 

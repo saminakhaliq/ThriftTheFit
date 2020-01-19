@@ -33,7 +33,7 @@ namespace FlyFashion.Controllers
             if (ModelState.IsValid)
             {
 
-                Item item = new Item(model.Type, model.Colour, model.Season, model.Description, model.Price ?? 0, model.Title, model.Image, model.Condition);
+                Item item = new Item(model.Type, model.Colour, model.Season, model.Description, model.Price ?? 0, model.Title, model.Image, model.Condition, model.Size);
                 var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
                 var result = await firebaseClient
                   .Child("Items")
@@ -69,6 +69,15 @@ namespace FlyFashion.Controllers
             
         }
 
+        // ---------- Format strings, first letter Uppercase ----------
+
+        string UppercaseFirst(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+            return char.ToUpper(str[0]) + str.Substring(1).ToLower();
+        }
+
         // ---------- Display market place ----------
 
 
@@ -89,8 +98,8 @@ namespace FlyFashion.Controllers
             foreach (var item in dbItems)
             {
                
-                var newItem = new Item(item.Object.Type, item.Object.Colour, item.Object.Season,
-                    item.Object.Description, item.Object.Price ?? 0, item.Object.Title, item.Object.Image, item.Object.Condition);
+                var newItem = new Item(UppercaseFirst(item.Object.Type), UppercaseFirst(item.Object.Colour), UppercaseFirst(item.Object.Season),
+                    UppercaseFirst(item.Object.Description), item.Object.Price ?? 0, UppercaseFirst(item.Object.Title), UppercaseFirst(item.Object.Image), UppercaseFirst(item.Object.Condition), item.Object.Size.ToUpper());
                 itemsList.Add(newItem);
             }
 
@@ -102,7 +111,88 @@ namespace FlyFashion.Controllers
         // ---------- Raincheck Feature----------
 
         [HttpGet]
-        public IActionResult Raincheck()
+        public async Task<IActionResult> Raincheck()
+        {
+
+            var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
+
+            //Retrieve data from Firebase
+            var dbItems = await firebaseClient
+              .Child("Items")
+              .OnceAsync<Item>(); 
+
+            var itemsList = new List<Item>();
+
+            int month = DateTime.Now.Month;
+
+            string season = "";
+
+            if(month == 1 || month == 2 || month == 3 || month == 4)
+            {
+                season = "winter";
+            }
+            else if (month == 5 || month == 6 || month == 7 || month == 8)
+            {
+                season = "spring";
+            }
+            else if (month == 9 || month == 10 || month == 11 || month == 12)
+            {
+                season = "summer";
+            }
+            else
+            {
+                season = "fall";
+            }
+
+
+
+            foreach (var item in dbItems)
+            {
+
+                
+
+                if(item.Object.Season.ToUpper() == season.ToUpper() || item.Object.Season == "all")
+                {
+                    var newItem = new Item(item.Object.Type, item.Object.Colour, item.Object.Season,
+                    item.Object.Description, item.Object.Price ?? 0, item.Object.Title, item.Object.Image, item.Object.Condition, item.Object.Size);
+                    itemsList.Add(newItem);
+                }
+
+                
+            }
+
+            return View(itemsList);
+         
+        }
+
+        // ---------- Mix and Match Feature ----------
+
+        [HttpGet]
+        public async Task<IActionResult> MixAndMatch()
+        {
+
+            var firebaseClient = new FirebaseClient("https://fly-fashion.firebaseio.com/");
+
+            //Retrieve data from Firebase
+            var dbItems = await firebaseClient
+              .Child("Items")
+              .OnceAsync<Item>();
+
+            var itemsList = new List<Item>();
+
+            foreach (var item in dbItems)
+            {
+
+                var newItem = new Item(UppercaseFirst(item.Object.Type), UppercaseFirst(item.Object.Colour), UppercaseFirst(item.Object.Season),
+                    UppercaseFirst(item.Object.Description), item.Object.Price ?? 0, UppercaseFirst(item.Object.Title), UppercaseFirst(item.Object.Image), UppercaseFirst(item.Object.Condition), item.Object.Size.ToUpper());
+                itemsList.Add(newItem);
+            }
+
+            return View(itemsList);
+        }
+
+        [HttpGet]
+        public IActionResult Test()
         {
             return View();
         }

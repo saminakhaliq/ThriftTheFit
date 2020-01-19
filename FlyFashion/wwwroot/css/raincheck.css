@@ -1,63 +1,32 @@
-﻿html {
-    background-color: #9acffe;
-    background-attachment: fixed;
-    color: #01447e;
-    font-family: optima;
-    max-width: 800px;
-    display: flex;
-    margin: auto;
+﻿@import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
+
+
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+
+h1, h2, #weather-text, nav {
+    font-family: 'Fredoka One', cursive;
+    overflow-y: scroll;
 }
 
-body {
-    padding: 16px;
-    flex-direction: column;
-    flex 0 1 600px;
-    margin-left: 350px;
-    margin-right: 0;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    background-color: transparent;
-}
-
-.left-bar {
-    height: 100%;
-    width: 30%;
+.centered {
     position: fixed;
-    float: left;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #ecf3ff;
-    overflow-x: hidden;
-    padding-top: 20px;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+.container img {
+    max-width: 50%;
+    height: 50%;
 }
 
 
-.main {
-    padding: 0px 10px;
-    float: right;
-    width: 70%;
+
+span {
+    display: inline-block;
 }
 
 img {
-    height: 200px;
-    width: 200px;
+    width: 50%;
 }
-
-.fa {
-    padding: 20px;
-    font-size: 30px;
-    width: 30px;
-    text-align: center;
-    text-decoration: none;
-}
-
-p {
-    font-family: Verdana;
-    font-size: 12px;
-}
-
-h1 {
-    font-size: 50px;
-}
-
